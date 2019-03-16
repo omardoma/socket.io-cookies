@@ -1,0 +1,19 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: socket.io-cookies
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - webnet
+    environment:
+      NODE_ENV: production
+
+networks: 
+  webnet:

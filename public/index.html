@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Socket.io Cookies</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark justify-content-center">
+            <span class="navbar-brand mb-0 h1">Socket.io Emitter</span>
+        </nav>
+    </header>
+    <main role="main">
+        <article class="connection-options">
+            <h1 id="status" class="h5 text-center">Connect to your Socket.io server</h1>
+            <form id="connectionForm" autocomplete="off" novalidate>
+                <input id="serverIp" name="serverIp" type="url" placeholder="Enter server IP/Domain"
+                    class="form-control" autofocus required />
+                <div id="actions">
+                    <button id="connect" type="submit" class="btn btn-success">Connect</button>
+                </div>
+            </form>
+        </article>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

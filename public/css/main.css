@@ -1,0 +1,42 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.connection-options {
+  padding: 10px;
+  width: 300px;
+}
+
+#actions {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 150px);
+  grid-auto-rows: 1fr;
+  gap: 20px;
+  place-content: center;
+}
+
+.form-control-plaintext:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
+  pointer-events: none;
+}
+
+textarea {
+  resize: none;
+}
