@@ -3,6 +3,7 @@ const logger = require('morgan');
 const helmet = require('helmet');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
+const cookieEncrypter = require('cookie-encrypter');
 const path = require('path');
 
 const { SECRET } = require('./config');
@@ -13,6 +14,7 @@ app.use(logger(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(helmet());
 app.use(compression());
 app.use(cookieParser(SECRET));
+app.use(cookieEncrypter(SECRET));
 app.use(express.static(path.resolve('public')));
 
 app.use('/', (req, res) => {
