@@ -40,7 +40,7 @@ io.use(async (socket, next) => {
 io.origins(['*:*']);
 
 // Listen to connections on the default namespace
-io.on('connection', socket => {
+io.sockets.on('connection', socket => {
   socket.on('join', room => {
     socket.join(room, err => {
       if (err) {
