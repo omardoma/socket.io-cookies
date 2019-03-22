@@ -1,17 +1,25 @@
 const io = require('socket.io')();
 const cookieParser = require('cookie-parser');
-const cookieDecrypter = require('cookie-encrypter');
+const cookieEncrypter = require('cookie-encrypter');
 
 const { SECRET } = require('../config');
 
 const ioCookieParser = (...args) => {
   const parser = cookieParser(...args);
-  return (socket, next) => parser(socket.request, null, next);
+  return (socket, next) => {
+    const req = socket.request;
+    const { res } = req;
+    parser(req, res, next);
+  };
 };
 
 const ioCookieDecrypter = (...args) => {
-  const decrypter = cookieDecrypter(...args);
-  return (socket, next) => decrypter(socket.request, {}, next);
+  const decrypter = cookieEncrypter(...args);
+  return (socket, next) => {
+    const req = socket.request;
+    const { res } = req;
+    decrypter(req, res, next);
+  };
 };
 
 // Parse cookies
