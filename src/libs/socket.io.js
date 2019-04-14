@@ -2,7 +2,7 @@ const io = require('socket.io')();
 const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
 
-const { SECRET } = require('../config');
+const { SECRET } = process.env;
 
 const ioCookieParser = (...args) => {
   const parser = cookieParser(...args);

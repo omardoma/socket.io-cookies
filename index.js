@@ -11,8 +11,10 @@ const gracefulShutdown = async () => {
 };
 
 const catchTermination = () => {
+  process.on('SIGHUP', gracefulShutdown);
   process.on('SIGTERM', gracefulShutdown);
   process.on('SIGINT', gracefulShutdown);
+  process.on('SIGUSR2', gracefulShutdown);
 };
 
 (async () => {

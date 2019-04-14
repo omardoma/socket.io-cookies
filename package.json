@@ -2,6 +2,7 @@
   "name": "socket.io-cookies",
   "version": "1.0.0",
   "private": true,
+  "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "start:prod": "pm2-runtime start index.js",

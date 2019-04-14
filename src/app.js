@@ -5,8 +5,11 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const cookieEncrypter = require('cookie-encrypter');
 const path = require('path');
+const dotenv = require('dotenv');
 
-const { SECRET } = require('./config');
+dotenv.config();
+
+const { SECRET } = process.env;
 
 const app = express();
 
@@ -29,7 +32,7 @@ app.use('/', (req, res) => {
       // signed: true, // Disable the ability to read the cookie on the client
     },
   );
-  res.sendFile(path.resolve('public/index.html'));
+  res.sendFile(path.resolve('public', 'index.html'));
 });
 
 module.exports = app;
