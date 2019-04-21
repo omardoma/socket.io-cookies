@@ -1,20 +1,25 @@
 const { bootstrapServer, closeServer } = require('./src/server');
 
-const gracefulShutdown = async () => {
-  try {
-    await closeServer();
-    process.exit(0);
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
+const gracefulShutdown = signal => async () => {
+  console.log(signal);
+  if (signal === 'SIGUSR2') {
+    process.kill(process.pid, signal);
+  } else {
+    try {
+      await closeServer();
+      process.exit(0);
+    } catch (err) {
+      console.error(err);
+      process.exit(1);
+    }
   }
 };
 
 const catchTermination = () => {
-  process.on('SIGHUP', gracefulShutdown);
-  process.on('SIGTERM', gracefulShutdown);
-  process.on('SIGINT', gracefulShutdown);
-  process.on('SIGUSR2', gracefulShutdown);
+  process.on('SIGHUP', gracefulShutdown('SIGHUP'));
+  process.on('SIGTERM', gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', gracefulShutdown('SIGINT'));
+  process.once('SIGUSR2', gracefulShutdown('SIGUSR2'));
 };
 
 (async () => {
